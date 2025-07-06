@@ -988,15 +988,6 @@
         <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2ReleaseChannels.Canary">
             <summary>The Canary release channel that is released daily.</summary>
         </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2RestartRequestedPriority">
-            <summary>Specifies the restart requested priority level.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2RestartRequestedPriority.Normal">
-            <summary>Developer should remind user to restart.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2RestartRequestedPriority.High">
-            <summary>Developer should prompt user to restart as soon as possible.</summary>
-        </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2SaveAsKind">
             <summary>Specifies Save As kind selection options for
             `ICoreWebView2SaveAsUIShowingEventArgs`.
@@ -1120,28 +1111,6 @@
         <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2TextDirectionKind.RightToLeft">
             <summary>Indicates that the notification text is right-to-left.</summary>
         </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorKind">
-            <summary>Kinds of errors that can be reported by the `ErrorReceived` event.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorKind.NoVideoTrackStarted">
-            <summary>CreateTexture/PresentTexture and so on should return failed HRESULT if
-            the texture stream is in the stopped state rather than using the
-            error event. But there can be edge cases where the browser process
-            knows the texture stream is in the stopped state and the host app
-            process texture stream doesn't yet know that. Like the 10 second issue
-            or if the script side has stopped the stream.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorKind.TextureError">
-            <summary>The texture already has been removed using CloseTexture.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorKind.TextureInUse">
-            <summary>The texture to be presented is already in use for rendering.
-            Call GetAvailableTexture to determine an available texture to present.
-            The developer can technically call PresentTexture multiple times,
-            but the first call make input texture "in use" until the browser
-            renders it and returns the texture as "recycle" so that it can be a member
-            of available textures.</summary>
-        </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2TrackingPreventionLevel">
             <summary>Tracking prevention levels.</summary>
         </member>
@@ -1181,26 +1150,6 @@
             behavior](/microsoft-edge/web-platform/tracking-prevention#current-tracking-prevention-behavior)
             for fine-grained information on what is being blocked with this level and
             can change with different Edge versions.</summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus">
-            <summary>Status of UpdateRuntime operation result.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.LatestVersionInstalled">
-            <summary>Latest version of Edge WebView2 Runtime is installed.
-            No update for Edge WebView2 Runtime is available, or Edge WebView2
-            Runtime is updated successfully and latest version is now installed.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.UpdateAlreadyRunning">
-            <summary>Edge WebView2 Runtime update is already running, which could be
-            triggered by auto update or by other UpdateRuntime request from some app.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.BlockedByPolicy">
-            <summary>Edge WebView2 Runtime update is blocked by group policy.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.Failed">
-            <summary>Edge WebView2 Runtime update failed.
-            See `ExtendedError` property of UpdateRuntimeResult for more
-            information about the failure.</summary>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2WebErrorStatus">
             <summary>Indicates the error status values for web navigations.</summary>
@@ -1371,66 +1320,10 @@
         <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Color.B">
             <summary>Specifies the intensity of the Blue color.</summary>
         </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4">
-            <summary>Matrix that represents a 3D transform. This transform is used to
-            calculate correct coordinates when calling
-            CreateCoreWebView2PointerInfoFromPointerId. This is equivalent to a
-            D2D1_MATRIX_4X4_F</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._11">
-            <summary>The value in the first row and first column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._12">
-            <summary>The value in the first row and second column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._13">
-            <summary>The value in the first row and third column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._14">
-            <summary>The value in the first row and fourth column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._21">
-            <summary>The value in the second row and first column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._22">
-            <summary>The value in the second row and second column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._23">
-            <summary>The value in the second row and third column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._24">
-            <summary>The value in the second row and fourth column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._31">
-            <summary>The value in the third row and first column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._32">
-            <summary>The value in the third row and second column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._33">
-            <summary>The value in the third row and third column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._34">
-            <summary>The value in the third row and fourth column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._41">
-            <summary>The value in the fourth row and first column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._42">
-            <summary>The value in the fourth row and second column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._43">
-            <summary>The value in the fourth row and third column of the matrix.</summary>
-        </member>
-        <member name="F:Microsoft.Web.WebView2.Core.CoreWebView2Matrix4x4._44">
-            <summary>The value in the fourth row and fourth column of the matrix.</summary>
-        </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2">
             <summary>
             WebView2 enables you to host web content using the latest Microsoft Edge browser and web technology.</summary>
-            <summary></summary>
             
-            <summary></summary>
             <summary></summary>
             <summary></summary>
             <summary></summary>
@@ -1890,31 +1783,6 @@
             Please use <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2.AddWebResourceRequestedFilter(System.String,Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext,Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequestSourceKinds)" /> and
             <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2.RemoveWebResourceRequestedFilter(System.String,Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext,Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequestSourceKinds)" /> instead.</summary>
         </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2.CustomDataPartitionId">
-            <summary>
-            Gets or sets the custom data partition id of the WebView.
-            </summary><remarks><para>
-            This API requires enabling 2 experimental browser features to work properly.
-            These features will be enabled by default in the future.
-            Before these features are enabled by default, please enable them by ensuring <c>--enable-features=ThirdPartyStoragePartitioning,PartitionedCookies</c> is set in <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions.AdditionalBrowserArguments" /> used to initialize <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2Environment" />.
-            If these features are not enabled, all data are treated as unpartitioned and stored in the global default location for the profile.
-            </para><para>
-            When custom data partition id id is set, the page in the WebView will act as if the page were hosted in a top level site uniquely associated with the partition id and have a separate storage partition as described in https://developer.chrome.com/docs/privacy-sandbox/storage-partitioning/ and separate cookie partition as described in https://developer.chrome.com/docs/privacy-sandbox/chips/ with all cookies partitioned.
-            If custom data partition id is set to null or empty string, the page inside the WebView will work normally with data treated as unpartitioned.
-            </para><para>
-            The custom data partition id is case sensitive. The default is an empty string. There is no restriction on the length or what characters can be used in partition id.
-            </para><para>
-            The change of the custom data partition id will be applied to new  page or iframe navigations and not impact existing pages and iframes.
-            To avoid accidentally using the new partition id for new page or iframe navigations started by the old page, it is recommended to create a new WebView for new partition instead of changing partition.
-            If you really have to change partition, it is recommended to navigate to a blank page before setting the new partition id and navigating to a page with the new partition.
-            </para><para>
-            As setting custom data partition id does not change DOM security model, developers should be very careful for WebViews with opener and opened window relationship, especially when the pages in the WebViews have same origin, like when the opened window is the same website or about:blank.
-            The pages in these WebViews can access each other's DOM and therefore can potentially access DOM storage and cookies in different partition for the same website.
-            It is recommended to set the same custom data partition id for these WebViews, unless there is an absolute need to set different partition ids and only trusted code is hosted in them.
-            </para><example>
-            :::code language="csharp" source="../code/sample/SampleApps/WebView2WpfBrowser/MainWindow.xaml.cs" id="CustomDataPartitionId":::
-            </example></remarks>
-        </member>
         <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2.BasicAuthenticationRequested">
             <summary>
             BasicAuthenticationRequested event is raised when WebView encounters a Basic HTTP Authentication request as described in https://developer.mozilla.org/docs/Web/HTTP/Authentication, a Digest HTTP Authentication request as described in https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization#digest, an NTLM authentication or a Proxy Authentication request.
@@ -2183,9 +2051,6 @@
             </summary><remarks>
             If a deferral is not taken on the event args, the subsequent scripts are blocked until the event handler returns. If a deferral is taken, the scripts are blocked until the deferral is completed.
             </remarks>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2.Find">
-            <summary>Retrieves the find session interface for the current web view.</summary>
         </member>
         <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2.SaveFileSecurityCheckStarting">
             <summary>This event will be raised during system FileTypePolicy
@@ -2748,9 +2613,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-            <summary>This interface is an extension of the ICoreWebView2CompositionController.
-            An object implementing ICoreWebView2ExperimentalCompositionController4
-            interface will also implement ICoreWebView2CompositionController.</summary>
         </member>
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2CompositionController.Cursor">
             <summary>
@@ -2814,13 +2676,6 @@
             <summary>
             When a given </summary><param name="Kind"> region kind of type <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2NonClientRegionKind" /></param><returns>This method returns a vector of rectangles which corresponds to the specified region.</returns><remarks>
             This method can be used inside the <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2CompositionController.NonClientRegionChanged" /> event handler to get the list of rects for the specific region that changed.
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2CompositionController.CreateCoreWebView2PointerInfoFromPointerId(System.UInt32,System.IntPtr,System.Numerics.Matrix4x4)">
-            <summary>
-            Converts a <c>PointerId</c> received from the system into a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2PointerInfo" />.
-            </summary><param name="PointerId">The PointerId received from the system to be converted into a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2PointerInfo" />.</param><param name="ParentWindow">The HWND that contains the WebView. This can be any HWND in the hwnd tree that contains the WebView.</param><param name="transform">The transform from that HWND to the WebView.</param><seealso cref="M:Microsoft.Web.WebView2.Core.CoreWebView2CompositionController.SendMouseInput(Microsoft.Web.WebView2.Core.CoreWebView2MouseEventKind,Microsoft.Web.WebView2.Core.CoreWebView2MouseEventVirtualKeys,System.UInt32,System.Drawing.Point)" /><remarks>
-            The returned <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2PointerInfo" /> is used in <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2CompositionController.SendPointerInput(Microsoft.Web.WebView2.Core.CoreWebView2PointerEventKind,Microsoft.Web.WebView2.Core.CoreWebView2PointerInfo)" />. The <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2PointerInfo.PointerKind" /> must be either pen or touch or the function will fail.
             </remarks>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2ContentLoadingEventArgs">
@@ -3013,7 +2868,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-            
             
             <summary>
             This class is the owner of the <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2Controller.CoreWebView2"/> object, and
@@ -3819,8 +3673,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-            <summary>Interface that provides methods related to the environment settings of CoreWebView2.
-            This interface allows for the creation of new `FindOptions` objects.</summary>
             <summary></summary>
             <summary></summary>
             <summary></summary>
@@ -3828,16 +3680,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-            <summary></summary>
-            
-            
-            
-            <summary>This is ICoreWebView2ExperimentalEnvironment12 that returns the texture stream interface.</summary>
-            <summary>This interface is an extension of the ICoreWebView2Environment that manages
-            updating Edge WebView2 Runtime. An object implementing the
-            ICoreWebView2ExperimentalEnvironment3 interface will also implement
-            ICoreWebView2Environment.</summary>
-            
             <summary>
             This represents the WebView2 Environment.
             </summary>
@@ -4024,26 +3866,6 @@
             [directory picker](https://developer.mozilla.org/docs/Web/API/Window/showDirectoryPicker)
             otherwise any IO operation done on the `FileSystemDirectoryHandle` will throw a DOM exception.</summary>
         </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateFindOptions">
-            <summary>Creates a new instance of a CoreWebView2FindOptions object.
-            This find options object can be used to define parameters for a find session.
-            Returns the newly created FindOptions object.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RestartRequested">
-            <summary>
-            Add an event handler for the <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RestartRequested" /> event.
-            <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RestartRequested" /> event is raised when there is a
-            need to restart WebView2 process in order to apply certain beneficial updates.
-            
-            <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RestartRequested" /> gives developers the awareness
-            of these necessary WebView2 restarts, allowing developers to resolve issues faster than
-            waiting for end users to restart the app.
-            Developer might want to give end users the ability to save their state before restarting.
-            For apps with multiple processes that host WebView2s that share the same user data folder you
-            need to make sure all WebView2 instances are closed and the associated WebView2 Runtime
-            browser process exits. See <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.BrowserProcessExited" />
-            for more details.</summary>
-        </member>
         <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateWebResourceRequest(System.String,System.String,System.IO.Stream,System.String)">
             <summary>
             Creates a new <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequest" /> object.
@@ -4108,50 +3930,6 @@
             CoreWebView2 will rewind the <c>icon</c> stream before decoding.
             There is a limit of 1000 active custom context menu items at a given time per <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2Environment" />. Attempting to create more before deleting existing ones will fail with <c>ERROR_NOT_ENOUGH_QUOTA</c>. It is recommended to reuse custom ContextMenuItems across CoreWebView2ContextMenuRequested events for performance. The created object's <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2ContextMenuItem.IsEnabled" /> property will default to <c>true</c> and <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2ContextMenuItem.IsChecked" /> property will default to <c>false</c>. A <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2ContextMenuItem.CommandId" /> will be assigned that's unique across active custom context menu items, but command ID values of deleted custom ContextMenuItems can be reassigned.
             </remarks>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RenderAdapterLUID">
-            <summary>The graphics adapter LUID of the renderer. The host should use this LUID adapter when creating D3D device to use with CreateTextureStream().</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.RenderAdapterLUIDChanged">
-            <summary>Listens for change of graphics adapter LUID of the browser.
-            The host can get the updated LUID by RenderAdapterLUID. It is expected
-            that the host updates texture's d3d Device with SetD3DDevice,
-            removes existing textures and creates new texture.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateTextureStream(System.String,System.Object)">
-            <summary>Registers the stream id that the host can handle, providing a
-            texture stream when requested from the WebView2's JavaScript code.
-            The host can register multiple unique stream instances, each with
-            a unique stream ID, enabling the host to stream from different sources
-            concurrently.
-            The host should call this only once for unique streamId. The second
-            call of already created streamId without destroying
-            CoreWebView2TextureStream object will return an error.
-            `d3dDevice` is used for creating shared IDXGI resource and NT shared
-            of it. The host should use Adapter of the LUID from the GetRenderAdapterLUID
-            for creating the D3D Device.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.UpdateRuntimeAsync">
-            <summary>
-            Try to update the installed Microsoft Edge WebView2 Runtime.</summary><remarks>
-            This will potentially result in a new version of the Edge WebView2 Runtime being installed and <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.NewBrowserVersionAvailable" /> event being raised.
-            There is no guarantee on the order of that event being raised and the completed handler being invoked.
-            Besides the <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.NewBrowserVersionAvailable" /> event, there will be no impact to any currently running WebView2s when the update is installed.
-            Even though the Edge WebView2 Runtime update is installed for the machine and available to all users, the update will happen silently and not show elevation prompt.
-            This will not impact Edge browser installations.
-            The latest version can always be queried using the <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.GetAvailableBrowserVersionString(System.String)" /> API.
-            The <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.UpdateRuntimeAsync" /> method is only supported for an installed Edge WebView2 Runtime.
-            When running a fixed version Edge WebView2 Runtime or non stable channel Edge browser, this API will return <c>HRESULT_FROM_WIN32(ERROR_NOT_SUPPORTED)</c>.
-            There could only be one active UpdateRuntime operation in an app process, calling this API before previous call is completed will fail with <c>HRESULT_FROM_WIN32(ERROR_BUSY)</c>.
-            Calling this API repeatedly in a short period of time, will also fail with <c>HRESULT_FROM_WIN32(ERROR_BUSY)</c>.
-            To protect accidental abuse of the update service, the implementation throttles the calls of this API to 3 times within 5 minutes in a process. The exact throttling limit can change in the future.
-            Edge update service can only support one update request at a time globally. If there is already an update operation running in the Edge update service, the result will be a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult" /> with <see cref="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.UpdateAlreadyRunning" />.
-            As the running update could succeed or fail, the app should retry later if <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2Environment.NewBrowserVersionAvailable" /> event has not been raised.
-            The <c>UpdateRuntime</c> operation is associated with the CoreWebView2Environment object and any ongoing <c>UpdateRuntime</c> operation will be aborted when the associated CoreWebView2Environment along with the CoreWebView2 objects that are created by the CoreWebView2Environment object are all released.
-            In this case, the result will be a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult" /> with <see cref="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.Failed" /><see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult.Status" /> and <c>E_ABORT</c><see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult.ExtendedError" />.
-            </remarks><example>
-            :::code language="csharp" source="../code/sample/SampleApps/WebView2WpfBrowser/MainWindow.xaml.cs" id="UpdateRuntime":::
-            </example>
         </member>
         <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateAsync(System.String,System.String,Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions)">
              <summary>
@@ -4697,114 +4475,9 @@
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FileSystemHandle.Permission">
             <summary>The permissions granted to the FileSystemHandle.</summary>
         </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2Find">
-            <summary>Interface providing methods and properties for finding and navigating through text in the web view.
-            This interface allows for finding text, navigation between matches, and customization of the find UI.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Find.ActiveMatchIndex">
-            <summary>Retrieves the index of the currently active match in the find session. Returns the index of the currently active match, or -1 if there is no active match.
-            The index starts at 1 for the first match.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Find.MatchCount">
-            <summary>Gets the total count of matches found in the current document based on the last find sessions criteria. Returns the total count of matches.
-            </summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2Find.ActiveMatchIndexChanged">
-            <summary>Registers an event handler for the ActiveMatchIndexChanged event. This event is raised when the index of the currently active match changes.
-            This can happen when the user navigates to a different match or when the active match is changed programmatically.
-            The parameter is the event handler to be added. Returns a token representing the added event handler.
-            This token can be used to unregister the event handler.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2Find.MatchCountChanged">
-            <summary>Registers an event handler for the MatchCountChanged event.
-            This event is raised when the total count of matches in the document changes due to a new find session or changes in the document.
-            The parameter is the event handler to be added. Returns a token representing the added event handler. This token can be used to unregister the event handler.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Find.StartAsync(Microsoft.Web.WebView2.Core.CoreWebView2FindOptions)">
-            <summary>Initiates a find using the specified find options asynchronously.
-            Displays the Find bar and starts the find session. If a find session was already ongoing, it will be stopped and replaced with this new instance.
-            If called with an empty string, the Find bar is displayed but no finding occurs. Changing the FindOptions object after initiation won't affect the ongoing find session.
-            To change the ongoing find session, Start must be called again with a new or modified FindOptions object.
-            Start supports HTML and TXT document queries. In general, this API is designed for text-based find sessions.
-            If you start a find session programmatically on another file format that doesn't have text fields, the find session will try to execute but will fail to find any matches. (It will silently fail)
-            Note: The asynchronous action completes when the UI has been displayed with the find term in the UI bar, and the matches have populated on the counter on the find bar.
-            There may be a slight latency between the UI display and the matches populating in the counter.
-            The MatchCountChanged and ActiveMatchIndexChanged events are only raised after Start has completed; otherwise, they will have their default values (-1 for active match index and 0 for match count).
-            To start a new find session (beginning the search from the first match), call `Stop` before invoking `Start`.
-            If `Start` is called consecutively with the same options and without calling `Stop`, the find session
-            will continue from the current position in the existing session.
-            Calling `Start` without altering its parameters will behave either as `FindNext` or `FindPrevious`, depending on the most recent search action performed.
-            Start will default to forward if neither have been called.
-            However, calling Start again during an ongoing find session does not resume from the point
-            of the current active match. For example, given the text "1 1 A 1 1" and initiating a find session for "A",
-            then starting another find session for "1", it will start searching from the beginning of the document,
-            regardless of the previous active match. This behavior indicates that changing the find query initiates a
-            completely new find session, rather than continuing from the previous match index.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Find.FindNext">
-            <summary>Navigates to the next match in the document.
-            If there are no matches to find, FindNext will wrap around to the first match's index.
-            If called when there is no find session active, FindNext will silently fail.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Find.FindPrevious">
-            <summary>Navigates to the previous match in the document.
-            If there are no matches to find, FindPrevious will wrap around to the last match's index.
-            If called when there is no find session active, FindPrevious will silently fail.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Find.Stop">
-            <summary>Stops the current 'Find' session and hides the Find bar.
-            If called with no Find session active, it will silently do nothing.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions">
-            <summary>Interface defining the find options.
-            This interface provides the necessary methods and properties to configure a find session.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions.FindTerm">
-            <summary>Gets or sets the word or phrase to be searched in the current page.
-            You can set `FindTerm` to any text you want to find on the page. 
-            This will take effect the next time you call the `Start()` method.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions.IsCaseSensitive">
-            <summary>Determines if the find session is case sensitive. Returns TRUE if the find is case sensitive, FALSE otherwise.
-            When toggling case sensitivity, the behavior can vary by locale, which may be influenced by both the browser's UI locale and the document's language settings. The browser's UI locale
-            typically provides a default handling approach, while the document's language settings (e.g., specified using the HTML lang attribute) can override these defaults to apply locale-specific rules. This dual consideration
-            ensures that text is processed in a manner consistent with user expectations and the linguistic context of the content.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions.ShouldHighlightAllMatches">
-            <summary>Gets or sets the state of whether all matches are highlighted.
-            Returns TRUE if all matches are highlighted, FALSE otherwise.
-            Note: Changes to this property take effect only when Start, FindNext, or FindPrevious is called.
-            Preferences for the session cannot be updated unless another call to the Start function on the server-side is made.
-            Therefore, changes will not take effect until one of these functions is called.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions.ShouldMatchWord">
-            <summary>Similar to case sensitivity, word matching also can vary by locale, which may be influenced by both the browser's UI locale and the document's language settings. The browser's UI locale
-            typically provides a default handling approach, while the document's language settings (e.g., specified using the HTML lang attribute) can override these defaults to apply locale-specific rules. This dual consideration
-            ensures that text is processed in a manner consistent with user expectations and the linguistic context of the content.
-            ShouldMatchWord determines if only whole words should be matched during the find session. Returns TRUE if only whole words should be matched, FALSE otherwise.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2FindOptions.SuppressDefaultFindDialog">
-            <summary>Sets this property to hide the default Find UI.
-            You can use this to hide the default UI so that you can show your own custom UI or programmatically interact with the Find API while showing no Find UI.
-            Returns TRUE if hiding the default Find UI and FALSE if using showing the default Find UI.
-            Note: Changes to this property take effect only when Start, FindNext, or FindPrevious is called.
-            Preferences for the session cannot be updated unless another call to the Start function on the server-side is made.
-            Therefore, changes will not take effect until one of these functions is called.
-            </summary>
-        </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2Frame">
             <summary>
             CoreWebView2Frame provides direct access to the iframes information and handling. You can get a CoreWebView2Frame by handling the <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2.FrameCreated" /> event.</summary>
-            <summary></summary>
             <summary></summary>
             <summary></summary>
             <summary></summary>
@@ -4965,9 +4638,6 @@
             </remarks><example>
             :::code language="csharp" source="../code/sample/SampleApps/WebView2WpfBrowser/MainWindow.xaml.cs" id="FrameChildFrameCreated":::
             </example>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Frame.UseOverrideTimerWakeInterval">
-            <summary></summary>
         </member>
         <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Frame.AddHostObjectToScript(System.String,System.Object,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
@@ -6032,7 +5702,6 @@
             The webview2 process which tried to load the DLL will fail with exit code STATUS_INVALID_IMAGE_HASH(-1073740760).</summary>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2ProcessInfo">
-            
             <summary>
             Provides a set of properties for a process list in the <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2Environment" />.</summary>
         </member>
@@ -6043,7 +5712,6 @@
             <summary>The process id of the process.</summary>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2Profile">
-            <summary></summary>
             <summary>
             Multiple profiles can be created under a single user data directory but with separated cookies, user preference settings, and various data storage etc.. If the CoreWebView2 was created with a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2ControllerOptions" />, the CoreWebView2Profile will match those specified options. Otherwise if this CoreWebView2 was created without a <see cref="T:Microsoft.Web.WebView2.Core.CoreWebView2ControllerOptions" />, then this will be the default CoreWebView2Profile for the corresponding CoreWebView2Environment.</summary>
             <summary></summary>
@@ -6053,18 +5721,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2Profile.ClearCustomDataPartitionAsync(System.String)">
-            <summary>
-            Clears all DOM storage and cookies in the specified custom data partition.
-            </summary><param name="CustomDataPartitionId">The id of the custom data partition. If null or empty string is specified, <see cref="T:System.ArgumentException" /> will be thrown.</param><remarks><para>
-            Clears all DOM storage and cookies in the custom data partition identified by the <c>CustomDataPartitionId</c>.
-            If no partition is found for the specified <c>CustomDataPartitionId</c>, the API succeeds without doing anything.
-            </para><para>
-            As DOM storage and cookies in the custom data partition is also browsing data, they will also be cleared when <see cref="M:Microsoft.Web.WebView2.Core.CoreWebView2Profile.ClearBrowsingDataAsync(Microsoft.Web.WebView2.Core.CoreWebView2BrowsingDataKinds)" /> is called and the clearing condition is met.
-            </para></remarks><example>
-            :::code language="csharp" source="../code/sample/SampleApps/WebView2WpfBrowser/MainWindow.xaml.cs" id="ClearCustomDataPartition":::
-            </example>
         </member>
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Profile.DefaultDownloadFolderPath">
             <summary>
@@ -6213,13 +5869,6 @@
             startTime and endTime. Overload the ClearBrowsingDataAsync method to
             allow for additional time parameters.
             </summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2RestartRequestedEventArgs">
-            <summary></summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2RestartRequestedEventArgs.Priority">
-            <summary>
-            Restart requested priority.</summary>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2SaveAsUIShowingEventArgs">
             <summary>The event args for `SaveAsUIShowing` event.</summary>
@@ -6412,7 +6061,6 @@
             <summary></summary>
             <summary></summary>
             <summary></summary>
-            <summary></summary>
         </member>
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.AreDefaultContextMenusEnabled">
             <summary>
@@ -6476,18 +6124,6 @@
             </summary><remarks>
             When disabled, the user is not able to zoom using Ctrl++, Ctr+-, or Ctrl+mouse wheel, but the zoom is set using <see cref="P:Microsoft.Web.WebView2.Core.CoreWebView2Controller.ZoomFactor" /> property. The default value is <c>true</c>.
             </remarks>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.PreferredBackgroundTimerWakeInterval">
-            <summary></summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.PreferredForegroundTimerWakeInterval">
-            <summary></summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.PreferredIntensiveTimerWakeInterval">
-            <summary></summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.PreferredOverrideTimerWakeInterval">
-            <summary></summary>
         </member>
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Settings.UserAgent">
             <summary>
@@ -6646,115 +6282,6 @@
         <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2SourceChangedEventArgs.IsNewDocument">
             <summary><c>true</c> if the page being navigated to is a new document.</summary>
         </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2Texture">
-            <summary>The texture that the host writes to so that the Renderer
-            will render on it.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Texture.Handle">
-            <summary>
-            NT handle that can be shared across with the browser.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Texture.Resource">
-            <summary>D2D texture resource that the host can write to.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2Texture.Timestamp">
-            <summary>The timestamp of presenting texture.</summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream">
-            <summary>
-            CoreWebView2 Texture Stream.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.Id">
-            <summary>
-            Retrieves texture stream id.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.ErrorReceived">
-            <summary>The `ErrorReceived` event is raised when an error with this texture stream occurs asynchronously.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.StartRequested">
-            <summary>
-            Registers texture stream request from the Javascript.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.Stopped">
-            <summary>
-            Registers texture stream stopped event.</summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.WebTextureReceived">
-            <summary>
-            Registers web texture receiving event.
-            </summary>
-        </member>
-        <member name="E:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.WebTextureStreamStopped">
-            <summary>
-            Registers web texture stopped event.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.AddAllowedOrigin(System.String,System.Int32)">
-            <summary>
-            Adds allowed origin for texture stream and web texture stream.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.RemoveAllowedOrigin(System.String)">
-            <summary>
-            Removes allowed origin for texture stream and web texture stream.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.CreateTexture(System.UInt32,System.UInt32)">
-            <summary>
-            Creates texture buffer that the host can write to for the browser rendering.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.GetAvailableTexture">
-            <summary>
-            Gets reusable texture.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.CloseTexture(Microsoft.Web.WebView2.Core.CoreWebView2Texture)">
-            <summary>
-            Closes created texture.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.PresentTexture(Microsoft.Web.WebView2.Core.CoreWebView2Texture)">
-            <summary>
-            Present texture to the browser's renderer.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.Stop">
-            <summary>
-            Stops presenting texture stream.</summary>
-        </member>
-        <member name="M:Microsoft.Web.WebView2.Core.CoreWebView2TextureStream.SetD3DDevice(System.Object)">
-            <summary>Set the D3D device this texture stream should use for creating shared
-            texture resources. When the RenderAdapterLUIDChanged event is raised you
-            should create a new D3D device using the RenderAdapterLUID property and
-            call SetD3DDevice with the new D3D device.
-            See the `CreateTextureStream` `d3dDevice` parameter for more details.</summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorReceivedEventArgs">
-            <summary>
-            Texture stream error event argument.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorReceivedEventArgs.Kind">
-            <summary>The kind of error that has occurred.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamErrorReceivedEventArgs.Texture">
-            <summary>
-            Texture that is associated with the an error.</summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamWebTextureReceivedEventArgs">
-            <summary>The event args for the `WebTextureReceived` event.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2TextureStreamWebTextureReceivedEventArgs.WebTexture">
-            <summary>The web texture that is received.</summary>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult">
-            <summary>The UpdateRuntime operation result.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult.ExtendedError">
-            <summary>
-            The update error happened while trying to update Edge WebView2 Runtime.
-            </summary><remarks>
-            ExtendedError will be 0 if Status is not <see cref="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.Failed" /> or <see cref="F:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeStatus.BlockedByPolicy" />.
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2UpdateRuntimeResult.Status">
-            <summary>The status for the UpdateRuntime operation.</summary>
-        </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs">
             <summary>
             Event args for the <see cref="E:Microsoft.Web.WebView2.Core.CoreWebView2.WebMessageReceived" /> event.</summary>
@@ -6897,25 +6424,6 @@
             If this method is being called again before a first call has completed, it will complete at the same time all prior calls do.
             If this method is being called after a first call has completed, it will return immediately (asynchronously).
             </remarks>
-        </member>
-        <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2WebTexture">
-            <summary>
-            Web Texture that receives from the Javascript.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2WebTexture.Handle">
-            <summary>
-            NT handle that can be shared from the browser.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2WebTexture.Resource">
-            <summary>
-            D2D texture resource that the host can read from.</summary>
-        </member>
-        <member name="P:Microsoft.Web.WebView2.Core.CoreWebView2WebTexture.Timestamp">
-            <summary>The timestamp of the web texture. Javascript can set this value
-            with any value, but it is suggested to use same value of its original
-            video frame that is a value of PresentTexture so that the host is able to
-            tell the receiving texture delta.</summary>
         </member>
         <member name="T:Microsoft.Web.WebView2.Core.CoreWebView2WindowFeatures">
             <summary>

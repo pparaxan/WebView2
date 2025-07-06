@@ -25,7 +25,7 @@
 #include <wrl/implements.h>
 
 #include "WebView2.h"
-#define CORE_WEBVIEW_TARGET_PRODUCT_VERSION L"138.0.3344.0"
+#define CORE_WEBVIEW_TARGET_PRODUCT_VERSION L"138.0.3351.48"
 
 #define COREWEBVIEW2ENVIRONMENTOPTIONS_STRING_PROPERTY(p)     \
  public:                                                      \
