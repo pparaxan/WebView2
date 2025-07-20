@@ -21,11 +21,16 @@
 #endif
 #endif
 
+#ifdef UNSAFE_BUFFERS_BUILD
+// TODO(task.ms/57661138): Remove C-library calls to fix the errors.
+#pragma allow_unsafe_libc_calls
+#endif  // UNSAFE_BUFFERS_BUILD
+
 #include <objbase.h>
 #include <wrl/implements.h>
 
 #include "WebView2.h"
-#define CORE_WEBVIEW_TARGET_PRODUCT_VERSION L"138.0.3351.48"
+#define CORE_WEBVIEW_TARGET_PRODUCT_VERSION L"140.0.3415.0"
 
 #define COREWEBVIEW2ENVIRONMENTOPTIONS_STRING_PROPERTY(p)     \
  public:                                                      \

@@ -87,6 +87,7 @@ interface ICoreWebView2_26;
 interface ICoreWebView2SaveFileSecurityCheckStartingEventHandler;
 interface ICoreWebView2_27;
 interface ICoreWebView2ScreenCaptureStartingEventHandler;
+interface ICoreWebView2_28;
 interface ICoreWebView2AcceleratorKeyPressedEventArgs;
 interface ICoreWebView2AcceleratorKeyPressedEventArgs2;
 interface ICoreWebView2BasicAuthenticationRequestedEventArgs;
@@ -169,6 +170,7 @@ interface ICoreWebView2Environment13;
 interface ICoreWebView2GetProcessExtendedInfosCompletedHandler;
 interface ICoreWebView2ProcessExtendedInfoCollection;
 interface ICoreWebView2Environment14;
+interface ICoreWebView2Environment15;
 interface ICoreWebView2EnvironmentOptions;
 interface ICoreWebView2EnvironmentOptions2;
 interface ICoreWebView2EnvironmentOptions3;
@@ -180,6 +182,11 @@ interface ICoreWebView2EnvironmentOptions8;
 interface ICoreWebView2ExecuteScriptResult;
 interface ICoreWebView2File;
 interface ICoreWebView2FileSystemHandle;
+interface ICoreWebView2Find;
+interface ICoreWebView2FindActiveMatchIndexChangedEventHandler;
+interface ICoreWebView2FindMatchCountChangedEventHandler;
+interface ICoreWebView2FindStartCompletedHandler;
+interface ICoreWebView2FindOptions;
 interface ICoreWebView2Frame;
 interface ICoreWebView2FrameDestroyedEventHandler;
 interface ICoreWebView2FrameNameChangedEventHandler;
@@ -1133,6 +1140,8 @@ typedef enum COREWEBVIEW2_RELEASE_CHANNELS {
   COREWEBVIEW2_RELEASE_CHANNELS_DEV = 0x4,
   /// The Canary release channel that is released daily.
   COREWEBVIEW2_RELEASE_CHANNELS_CANARY = 0x8,
+  /// TODO(task.ms/58123561): Pump Sheriff: Remove internal channel from CoreWebView2ReleaseChannels in environment.idl
+  COREWEBVIEW2_RELEASE_CHANNELS_INTERNAL = 0x16,
 } COREWEBVIEW2_RELEASE_CHANNELS;
 cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(COREWEBVIEW2_RELEASE_CHANNELS)")
 
@@ -7893,6 +7902,21 @@ interface ICoreWebView2Environment14 : ICoreWebView2Environment13 {
 
 
 
+/// Interface that provides methods related to the environment settings of CoreWebView2.
+/// This interface allows for the creation of new `FindOptions` objects.
+[uuid(2ac5ebfb-e654-5961-a667-7971885c7b27), object, pointer_default(unique)]
+interface ICoreWebView2Environment15 : ICoreWebView2Environment14 {
+  /// Creates a new instance of a CoreWebView2FindOptions object.
+  /// This find options object can be used to define parameters for a find session.
+  /// Returns the newly created FindOptions object.
+  HRESULT CreateFindOptions(
+      [out, retval] ICoreWebView2FindOptions** value);
+
+
+}
+
+
+
 /// A continuation of the ICoreWebView2Environment interface.
 [uuid(41f3632b-5ef4-404f-ad82-2d606c5a9a21), object, pointer_default(unique)]
 interface ICoreWebView2Environment2 : ICoreWebView2Environment {
@@ -8750,6 +8774,207 @@ interface ICoreWebView2FileSystemHandle : IUnknown {
 
   /// The permissions granted to the FileSystemHandle.
   [propget] HRESULT Permission([out, retval] COREWEBVIEW2_FILE_SYSTEM_HANDLE_PERMISSION* value);
+
+
+
+}
+
+
+/// Receives the result of the `Start` method.
+[uuid(6a90ecaf-44b0-5bd9-8f07-1967e17be9fb), object, pointer_default(unique)]
+interface ICoreWebView2FindStartCompletedHandler : IUnknown {
+
+  /// Provides the result of the corresponding asynchronous method.
+  HRESULT Invoke([in] HRESULT errorCode);
+}
+
+/// Receives `ActiveMatchIndexChanged` events.
+[uuid(0054f514-9a8e-5876-aed5-30b37f8c86a5), object, pointer_default(unique)]
+interface ICoreWebView2FindActiveMatchIndexChangedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2Find* sender,
+      [in] IUnknown* args);
+}
+/// Receives `MatchCountChanged` events.
+[uuid(da0d6827-4254-5b10-a6d9-412076afc9f3), object, pointer_default(unique)]
+interface ICoreWebView2FindMatchCountChangedEventHandler : IUnknown {
+  /// Provides the event args for the corresponding event.
+  HRESULT Invoke(
+      [in] ICoreWebView2Find* sender,
+      [in] IUnknown* args);
+}
+
+
+/// Interface providing methods and properties for finding and navigating through text in the web view.
+/// This interface allows for finding text, navigation between matches, and customization of the find UI.
+[uuid(a3ec0f5f-ddbc-54ed-8546-af75a785b9a6), object, pointer_default(unique)]
+interface ICoreWebView2Find : IUnknown {
+  /// Retrieves the index of the currently active match in the find session. Returns the index of the currently active match, or -1 if there is no active match.
+  /// The index starts at 1 for the first match.
+  /// 
+  /// \snippet AppWindow.cpp ActiveMatchIndex
+  [propget] HRESULT ActiveMatchIndex([out, retval] INT32* value);
+
+
+  /// Gets the total count of matches found in the current document based on the last find sessions criteria. Returns the total count of matches.
+  /// 
+  /// \snippet AppWindow.cpp MatchCount
+  [propget] HRESULT MatchCount([out, retval] INT32* value);
+
+
+
+  /// Adds an event handler for the `ActiveMatchIndexChanged` event.
+  /// Registers an event handler for the ActiveMatchIndexChanged event. This event is raised when the index of the currently active match changes.
+  /// This can happen when the user navigates to a different match or when the active match is changed programmatically.
+  /// The parameter is the event handler to be added. Returns a token representing the added event handler.
+  /// This token can be used to unregister the event handler.
+  HRESULT add_ActiveMatchIndexChanged(
+      [in] ICoreWebView2FindActiveMatchIndexChangedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_ActiveMatchIndexChanged`.
+  HRESULT remove_ActiveMatchIndexChanged(
+      [in] EventRegistrationToken token);
+
+  /// Adds an event handler for the `MatchCountChanged` event.
+  /// Registers an event handler for the MatchCountChanged event.
+  /// This event is raised when the total count of matches in the document changes due to a new find session or changes in the document.
+  /// The parameter is the event handler to be added. Returns a token representing the added event handler. This token can be used to unregister the event handler.
+  HRESULT add_MatchCountChanged(
+      [in] ICoreWebView2FindMatchCountChangedEventHandler* eventHandler,
+      [out] EventRegistrationToken* token);
+
+  /// Removes an event handler previously added with `add_MatchCountChanged`.
+  HRESULT remove_MatchCountChanged(
+      [in] EventRegistrationToken token);
+
+
+  /// Initiates a find using the specified find options asynchronously.
+  /// Displays the Find bar and starts the find session. If a find session was already ongoing, it will be stopped and replaced with this new instance.
+  /// If called with an empty string, the Find bar is displayed but no finding occurs. Changing the FindOptions object after initiation won't affect the ongoing find session.
+  /// To change the ongoing find session, Start must be called again with a new or modified FindOptions object.
+  /// Start supports HTML and TXT document queries. In general, this API is designed for text-based find sessions.
+  /// If you start a find session programmatically on another file format that doesn't have text fields, the find session will try to execute but will fail to find any matches. (It will silently fail)
+  /// Note: The asynchronous action completes when the UI has been displayed with the find term in the UI bar, and the matches have populated on the counter on the find bar.
+  /// There may be a slight latency between the UI display and the matches populating in the counter.
+  /// The MatchCountChanged and ActiveMatchIndexChanged events are only raised after Start has completed; otherwise, they will have their default values (-1 for active match index and 0 for match count).
+  /// To start a new find session (beginning the search from the first match), call `Stop` before invoking `Start`.
+  /// If `Start` is called consecutively with the same options and without calling `Stop`, the find session
+  /// will continue from the current position in the existing session.
+  /// Calling `Start` without altering its parameters will behave either as `FindNext` or `FindPrevious`, depending on the most recent search action performed.
+  /// Start will default to forward if neither have been called.
+  /// However, calling Start again during an ongoing find session does not resume from the point
+  /// of the current active match. For example, given the text "1 1 A 1 1" and initiating a find session for "A",
+  /// then starting another find session for "1", it will start searching from the beginning of the document,
+  /// regardless of the previous active match. This behavior indicates that changing the find query initiates a
+  /// completely new find session, rather than continuing from the previous match index.
+  /// 
+  /// \snippet AppWindow.cpp Start
+  HRESULT Start(
+      [in] ICoreWebView2FindOptions* options
+      , [in] ICoreWebView2FindStartCompletedHandler* handler);
+
+  /// Navigates to the next match in the document.
+  /// If there are no matches to find, FindNext will wrap around to the first match's index.
+  /// If called when there is no find session active, FindNext will silently fail.
+  /// 
+  /// \snippet AppWindow.cpp FindNext
+  HRESULT FindNext(
+  );
+
+  /// Navigates to the previous match in the document.
+  /// If there are no matches to find, FindPrevious will wrap around to the last match's index.
+  /// If called when there is no find session active, FindPrevious will silently fail.
+  /// 
+  /// \snippet AppWindow.cpp FindPrevious
+  HRESULT FindPrevious(
+  );
+
+  /// Stops the current 'Find' session and hides the Find bar.
+  /// If called with no Find session active, it will silently do nothing.
+  /// 
+  /// \snippet AppWindow.cpp Stop
+  HRESULT Stop(
+  );
+
+
+}
+
+
+
+/// Interface defining the find options.
+/// This interface provides the necessary methods and properties to configure a find session.
+[uuid(e82e3b2b-a4af-5bc6-94c6-18b44157a16c), object, pointer_default(unique)]
+interface ICoreWebView2FindOptions : IUnknown {
+  /// Gets the `FindTerm` property.
+  ///
+  /// The caller must free the returned string with `CoTaskMemFree`.  See
+  /// [API Conventions](/microsoft-edge/webview2/concepts/win32-api-conventions#strings).
+  [propget] HRESULT FindTerm([out, retval] LPWSTR* value);
+
+
+  /// Gets or sets the word or phrase to be searched in the current page.
+  /// You can set `FindTerm` to any text you want to find on the page. 
+  /// This will take effect the next time you call the `Start()` method.
+  /// 
+  /// \snippet AppWindow.cpp FindTerm
+  [propput] HRESULT FindTerm([in] LPCWSTR value);
+
+
+  /// Gets the `IsCaseSensitive` property.
+  [propget] HRESULT IsCaseSensitive([out, retval] BOOL* value);
+
+
+  /// Determines if the find session is case sensitive. Returns TRUE if the find is case sensitive, FALSE otherwise.
+  /// When toggling case sensitivity, the behavior can vary by locale, which may be influenced by both the browser's UI locale and the document's language settings. The browser's UI locale
+  /// typically provides a default handling approach, while the document's language settings (e.g., specified using the HTML lang attribute) can override these defaults to apply locale-specific rules. This dual consideration
+  /// ensures that text is processed in a manner consistent with user expectations and the linguistic context of the content.
+  /// 
+  /// \snippet AppWindow.cpp IsCaseSensitive
+  [propput] HRESULT IsCaseSensitive([in] BOOL value);
+
+
+  /// Gets the `ShouldHighlightAllMatches` property.
+  [propget] HRESULT ShouldHighlightAllMatches([out, retval] BOOL* value);
+
+
+  /// Gets or sets the state of whether all matches are highlighted.
+  /// Returns TRUE if all matches are highlighted, FALSE otherwise.
+  /// Note: Changes to this property take effect only when Start, FindNext, or FindPrevious is called.
+  /// Preferences for the session cannot be updated unless another call to the Start function on the server-side is made.
+  /// Therefore, changes will not take effect until one of these functions is called.
+  /// 
+  /// \snippet AppWindow.cpp ShouldHighlightAllMatches
+  [propput] HRESULT ShouldHighlightAllMatches([in] BOOL value);
+
+
+  /// Gets the `ShouldMatchWord` property.
+  [propget] HRESULT ShouldMatchWord([out, retval] BOOL* value);
+
+
+  /// Similar to case sensitivity, word matching also can vary by locale, which may be influenced by both the browser's UI locale and the document's language settings. The browser's UI locale
+  /// typically provides a default handling approach, while the document's language settings (e.g., specified using the HTML lang attribute) can override these defaults to apply locale-specific rules. This dual consideration
+  /// ensures that text is processed in a manner consistent with user expectations and the linguistic context of the content.
+  /// ShouldMatchWord determines if only whole words should be matched during the find session. Returns TRUE if only whole words should be matched, FALSE otherwise.
+  /// 
+  /// \snippet AppWindow.cpp ShouldMatchWord
+  [propput] HRESULT ShouldMatchWord([in] BOOL value);
+
+
+  /// Gets the `SuppressDefaultFindDialog` property.
+  [propget] HRESULT SuppressDefaultFindDialog([out, retval] BOOL* value);
+
+
+  /// Sets this property to hide the default Find UI.
+  /// You can use this to hide the default UI so that you can show your own custom UI or programmatically interact with the Find API while showing no Find UI.
+  /// Returns TRUE if hiding the default Find UI and FALSE if using showing the default Find UI.
+  /// Note: Changes to this property take effect only when Start, FindNext, or FindPrevious is called.
+  /// Preferences for the session cannot be updated unless another call to the Start function on the server-side is made.
+  /// Therefore, changes will not take effect until one of these functions is called.
+  /// 
+  /// \snippet AppWindow.cpp SuppressDefaultFindDialog
+  [propput] HRESULT SuppressDefaultFindDialog([in] BOOL value);
 
 
 
@@ -10665,6 +10890,18 @@ interface ICoreWebView2_27 : ICoreWebView2_26 {
   /// Removes an event handler previously added with `add_ScreenCaptureStarting`.
   HRESULT remove_ScreenCaptureStarting(
       [in] EventRegistrationToken token);
+
+
+}
+
+
+
+/// Interface providing methods to access the find session functionalities in the CoreWebView2.
+[uuid(62e50381-5bf5-51a8-aae0-f20a3a9c8a90), object, pointer_default(unique)]
+interface ICoreWebView2_28 : ICoreWebView2_27 {
+  /// Retrieves the find session interface for the current web view.
+  [propget] HRESULT Find([out, retval] ICoreWebView2Find** value);
+
 
 
 }

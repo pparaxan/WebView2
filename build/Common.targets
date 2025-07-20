@@ -33,7 +33,7 @@ found in the LICENSE file.
   <PropertyGroup>
     <EffectivePlatform>$(Platform)</EffectivePlatform>
     <!-- For projects building arm64ec, fall back to x64 binaries. Arm64ec is an optimization for running x64 processes on arm64 devices. Arm64ec and x64 binaries are interoperable, but both are incompatible with arm64.-->
-    <EffectivePlatform Condition="'$(EffectivePlatform)' == 'arm64ec'">x64</EffectivePlatform>    
+    <EffectivePlatform Condition="'$(EffectivePlatform)' == 'arm64ec'">x64</EffectivePlatform>
     <EffectivePlatform Condition="'$(EffectivePlatform)' == 'Win32'">x86</EffectivePlatform>
     <EffectivePlatform Condition="'$(EffectivePlatform)' == 'Any CPU'">x86</EffectivePlatform>
     <EffectivePlatform Condition="'$(EffectivePlatform)' == 'AnyCPU'">x86</EffectivePlatform>
@@ -87,7 +87,7 @@ found in the LICENSE file.
     -->
     <WebView2UseWinRT Condition="'$(WebView2UseWinRT)' == '' And '$(UseUwpTools)' == 'true'">false</WebView2UseWinRT>
     <WebView2UseWinRT Condition="'$(WebView2UseWinRT)' == '' And ('$(TargetPlatformIdentifier)' == 'UAP' Or ('$(MicrosoftWindowsAppSDKPackageDir)'!='' And '$(TargetFramework)'==''))" >true</WebView2UseWinRT>
-    
+
     <!-- Switch between using a static library or a dll for the WebView2Loader.
       'Dynamic' value to use the WebView2Loader.dll, 'Static' value to static lib.
       For WinRT, use 'None' and skip copy/link of the loader as it's already linked
