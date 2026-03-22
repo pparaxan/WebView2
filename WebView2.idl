@@ -113,6 +113,7 @@ interface ICoreWebView2DragStartingEventHandler;
 interface ICoreWebView2ContentLoadingEventArgs;
 interface ICoreWebView2ContextMenuItem;
 interface ICoreWebView2CustomItemSelectedEventHandler;
+interface ICoreWebView2ContextMenuItemCollection;
 interface ICoreWebView2ContextMenuRequestedEventArgs;
 interface ICoreWebView2ContextMenuTarget;
 interface ICoreWebView2Controller;
@@ -146,11 +147,11 @@ interface ICoreWebView2EstimatedEndTimeChangedEventHandler;
 interface ICoreWebView2StateChangedEventHandler;
 interface ICoreWebView2DownloadStartingEventArgs;
 interface ICoreWebView2DragStartingEventArgs;
-interface ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler;
-// Skipping ICoreWebView2CreateCoreWebView2EnvironmentWithOptionsCompletedHandler forward declaration
 interface ICoreWebView2Environment;
 interface ICoreWebView2NewBrowserVersionAvailableEventHandler;
 interface ICoreWebView2CreateCoreWebView2ControllerCompletedHandler;
+interface ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler;
+// Skipping ICoreWebView2CreateCoreWebView2EnvironmentWithOptionsCompletedHandler forward declaration
 interface ICoreWebView2Environment2;
 interface ICoreWebView2Environment3;
 interface ICoreWebView2CreateCoreWebView2CompositionControllerCompletedHandler;
@@ -210,6 +211,7 @@ interface ICoreWebView2FrameChildFrameCreatedEventHandler;
 interface ICoreWebView2FrameCreatedEventArgs;
 interface ICoreWebView2FrameInfo;
 interface ICoreWebView2FrameInfo2;
+interface ICoreWebView2FrameInfoCollection;
 interface ICoreWebView2FrameInfoCollectionIterator;
 interface ICoreWebView2HttpHeadersCollectionIterator;
 interface ICoreWebView2HttpRequestHeaders;
@@ -229,8 +231,6 @@ interface ICoreWebView2Notification;
 interface ICoreWebView2NotificationCloseRequestedEventHandler;
 interface ICoreWebView2NotificationReceivedEventArgs;
 interface ICoreWebView2ObjectCollectionView;
-interface ICoreWebView2ContextMenuItemCollection;
-interface ICoreWebView2FrameInfoCollection;
 interface ICoreWebView2ObjectCollection;
 interface ICoreWebView2PermissionRequestedEventArgs;
 interface ICoreWebView2PermissionRequestedEventArgs2;
@@ -885,6 +885,12 @@ typedef enum COREWEBVIEW2_PERMISSION_KIND {
   /// requested when developers use the [Multi-Screen Window Placement API](https://www.w3.org/TR/window-placement/)
   /// to get screen details.
   COREWEBVIEW2_PERMISSION_KIND_WINDOW_MANAGEMENT,
+  /// Indicates permission to persist storage created by the Storage APIs,
+  /// service workers, etc. If the persistent storage permission is granted,
+  /// the browser will not evict data in case of low disk space. Permission
+  /// for a site can be checked using
+  /// [Storage Manager API](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persisted).
+  COREWEBVIEW2_PERMISSION_KIND_PERSISTENT_STORAGE,
 } COREWEBVIEW2_PERMISSION_KIND;
 
 /// Specifies the response to a permission request.
